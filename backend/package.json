@@ -4,19 +4,21 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "nodemon index.js"
+    "start:dev": "nodemon index.js",
+    "seed": "node seed.js"
   },
   "keywords": [],
-  "author": "mamun",
+  "author": "rohit",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@sentry/node": "^9.43.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.6.1",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.3"
+    "mongoose": "^8.17.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

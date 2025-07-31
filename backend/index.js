@@ -1,10 +1,30 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const Sentry = require('@sentry/node');
 
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5000;
 require('dotenv').config()
+
+//cHFdUn10JoSbjeCg
+const connectToDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected!');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  }
+};
+
+Sentry.init({
+  dsn: 'https://5fb7e55413c760bcec6bff9ab1ce3ed8@o4509762427486208.ingest.us.sentry.io/4509762429517824>',
+  tracesSampleRate: 1.0, // You can lower it later
+});
 
 // middleware
 app.use(express.json());
@@ -25,7 +45,7 @@ app.use("/api/auth", userRoutes)
 app.use("/api/admin", adminRoutes)
 
 async function main() {
-  await mongoose.connect(process.env.DB_URL);
+  await mongoose.connect(process.env.MONGO_URI);
   app.use("/", (req, res) => {
     res.send("Book Store Server is running!");
   });
@@ -36,3 +56,7 @@ main().then(() => console.log("Mongodb connect successfully!")).catch(err => con
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+
+// index.js or app.js
+

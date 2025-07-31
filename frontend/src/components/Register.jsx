@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 const Register = () => {
     const [message, setMessage] = useState("");
     const {registerUser, signInWithGoogle} = useAuth();
-    // console.log(registerUser)
+    console.log(registerUser)
     const {
         register,
         handleSubmit,
