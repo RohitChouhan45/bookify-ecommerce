@@ -15,6 +15,8 @@ const postABook = async (req, res) => {
 const getAllBooks =  async (req, res) => {
     try {
         const books = await Book.find().sort({ createdAt: -1});
+        console.log(`Total books in database: ${books.length}`);
+        console.log('Books:', books.map(book => ({ id: book._id, title: book.title })));
         res.status(200).send(books)
         
     } catch (error) {
